@@ -3,6 +3,7 @@ mongoose = require("mongoose");
 validuser = require("../controlers/validacao");
 
 exports.createCliente = async (req, res) => {
+    console.log(req)
             try{    
                 var { nome, senha, telefone, email, modelo, placa } = req.body;
 

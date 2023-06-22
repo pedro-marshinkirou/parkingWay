@@ -3,31 +3,8 @@ mongoose = require("mongoose");
 
 exports.createReserva = async (req, res) => {  
     try{ 
-              var { horaInicio, 
-                    horaFinal, 
-                    funcionario, 
-                    cliente, 
-                    nomeEstac,
-                    endereco,  
-                    localInicial, 
-                    localFinal, 
-                    status, 
-                    valorVaga, 
-                    tempo, 
-                    valorFinal, 
-                    tipoVaga, 
-                    pagConfirm } = req.body;
-
-                    if (!funcionario || 
-                        !cliente || 
-                        !nomeEstac || 
-                        !endereco || 
-                        !status || 
-                        !valorVaga|| 
-                        !tipoVaga
-                         ) {
-                        res.status(400).json({ messsage: "preencha todos os campos do formulário."});
-                    }
+        console.log(req)
+              var { reserva } = req.body;
 
                 var reserva = await Reserva.ReservaModel.create(req.body)
                     .catch((err) => console.log(err.messsage));
@@ -42,8 +19,13 @@ exports.createReserva = async (req, res) => {
                         horaFinal,
                         funcionario,
                         cliente,
+                        estacionamento,
                         nomeEstac,
                         endereco,
+                        telCliente,
+                        nomeCliente,
+                        placa,
+                        modelo,
                         localInicial,
                         localFinal,
                         status,
@@ -87,7 +69,7 @@ exports.reservaGetone = async (req, res) => {
 exports.reservaUpdate = async (req, res) => {
             try{
                 id = req.params.id;
-                await Reserva.ReservaModel.findOneAndUpdate({cliente: id},req.body);
+                await Reserva.ReservaModel.findByIdAndUpdate(id,req.body);
                 res.json({message: "Dados atualizados com sucesso"});
             } catch (err) {
                 res.status(500)
@@ -106,8 +88,20 @@ exports.reservaFUNCupdate = async (req, res) => {
             },
 exports.cancelaReserva = async (req, res) => {   
             try {
-                res.status(201).json(await Reserva.ReservaModel.findByIdAndUpdate(req.params.id,{ status: 'C' } ));
+                id = req.params.id
+                console.log(id);
+                res.status(201).json(await Reserva.ReservaModel.findByIdAndUpdate(id,{ status: 'C' } ));
             } catch (error) {
                 res.status(400).json({ message: error.message });
             }
+            }
+exports.reservaCLIENTEUpdate = async (req, res) => {
+            try{
+                id = req.params.id;
+                await Reserva.ReservaModel.findOneAndUpdate({cliente: id},req.body);
+                res.json({message: "Dados atualizados com sucesso"});
+            } catch (err) {
+                res.status(500)
+                .json({message: err.message});
+                }
             }

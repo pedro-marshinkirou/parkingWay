@@ -31,6 +31,7 @@ var estacionamentoService = {
   },
 
   procurarEstacionamento: async (estacionamento) => {
+    console.log(estacionamento);
     console.log(typeof estacionamento);
     var Estacionamento = await axios.get(`http://10.0.2.2:5000/apiestacionamento/procurarpor`, {estacionamento});
     return Estacionamento;

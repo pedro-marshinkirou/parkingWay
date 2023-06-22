@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from "react";
-import { View, Text, Platform, PermissionsAndroid, Dimensions } from "react-native";
+import { View, Text, Platform, PermissionsAndroid, Dimensions, TouchableOpacity } from "react-native";
 import { useNavigation, useRoute, NavigationContainer } from '@react-navigation/native';
 import MapView from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
+import reservasService from "../services/reservasService";
 
 const MapaInicial = () => {
     const[regiao, setRegiao] = useState(null);
-    const[marcador, setMarcador] = useState([]);
+    const[reserva, setReserva] = useState({});
     const {width, height} = Dimensions.get('screen');
     const route = useRoute();
     const navigation = useNavigation();
@@ -41,7 +42,39 @@ const MapaInicial = () => {
     function AnotherLocation(e){
         console.log("DIFFERENT LAT", e.nativeEvent.coordinate.latitude),
         console.log("DIFFERENT LONG",e.nativeEvent.coordinate.longitude)
-    } 
+    }
+
+    const handleSubmit = async () => {
+      try{
+      setReserva({
+        horaInicio: '',
+        horaFinal: '',
+        funcionario: estac.funcionario,
+        cliente: data._id,
+        estacionamento: estac._id,
+        nomeEstac: estac.nome,
+        endereco: estac.endereco,
+        telCliente: data.telefone,
+        nomeCliente: data.nome,
+        placa: data.placa,
+        modelo: data.modelo,
+        localInicial: '',
+        localFinal: '',
+        status: 'A',
+        valorVaga: estac.valor_vaga,
+        tempo: '',
+        valorFinal: '',
+        tipoVaga: 'Normal',
+        pagConfirm: 'NC',
+      })
+        console.log(reserva);
+        console.log(estac);
+        console.log(data);
+        navigation.navigate('EfetuarReserva', {reserva});
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
     return(
         <View style = {styles.buttonContainer}>
@@ -55,14 +88,17 @@ const MapaInicial = () => {
                         })
                     :''
                 }}
-                style={{width: width, height: height}}
+                style={{width:'100%', height:'75%'}}
                 region={regiao}
                 zoomEnabled={true}
-                minZoomLevel={10}
+                minZoomLevel={18}
                 showsUserLocation={true}
                 loadingEnabled={true}
                 onPress={(e) => AnotherLocation(e)}
             />
+            <TouchableOpacity style={styles.btn} onPress={handleSubmit}>
+                <Text style={styles.btnText}>Efetuar Reserva</Text>
+              </TouchableOpacity>
         </View>
     );
 };

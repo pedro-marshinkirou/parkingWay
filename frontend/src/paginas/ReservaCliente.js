@@ -11,24 +11,41 @@ function ReservaCliente() {
     const {data} = route.params
     console.log(data.nome);
     const [tableData, setTableData] = useState([]);
-    const [estacionamento, setEstacionamento] = useState('');
     const [estac, setEstac] = useState({});
+    const [estacionamento, setEstacionamento] = useState({
+        estacionamento: ''
+    });
+    
+        const handleChange = (name, value) => {
+            setEstacionamento({
+            ...estacionamento,
+            [name]: value
+            });
+        };
 
         const handleSubmit = async () => {
             try {
-                console.log(estacionamento);
-                const response = await estacionamentoService.procurarEstacionamento(estacionamento);
+
+                if (
+                    estacionamento.estacionamento === ''
+                  ) {
+                    alert('Por Favor, insira um nome ou endereço');
+                    return;
+                  }
+
+                console.log(estacionamento.estacionamento);
+                console.log( typeof estacionamento.estacionamento);
+                const response = await estacionamentoService.procurarEstacionamento(estacionamento.estacionamento);
                 setTableData(response.data);
+
+                setEstacionamento({
+                    estacionamento:''
+                  });
 
             } catch (error) {
                 console.error(error);
             }
           };
-
-        /*const handleMapa= () => {
-            console.log(estac);
-            navigation.navigate('MapaInicial', {estac: estac}, {data});
-        };*/
 
     return (
         <View style={styles.wrapper}>

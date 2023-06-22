@@ -58,11 +58,10 @@ const Estacionamento = () => {
       console.log(formData.funcionario);
       var Lock = await estacionamentoService.getEstacionamentobyID(data._id);
       console.log(Lock.data);
-      //como restringir esse caralho?
-      if (Lock.data.funcionario) {
+      if (Lock.data.length == 1) {
         alert('Este Funcionário não pode mais cadastrar!');
       } 
-      if (!Lock.data.funcionario) {
+      else {
         await estacionamentoService.createEstacionamento(formData);
         alert('Estacionamento cadastrado com sucesso!');
       } 

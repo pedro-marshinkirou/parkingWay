@@ -117,7 +117,9 @@ exports.EstacionamentoGetoneBYUser = async (req, res) => {
         },
 exports.procurarEstac = async (req, res) => {
                 try{
-                    var { estacionamento } = req.body;
+                    console.log(req)
+                    var {estacionamento} = req.body;
+                    console.log( estacionamento);
                     console.log( typeof estacionamento);
                     var estacEncont = await EST.EstacionamentoModel.find({$or: [{nome: {$regex: `${estacionamento || ""}`, $options: "i"}},{endereco: {$regex: `${estacionamento || ""}`, $options: "i"}}]});
                     console.log(estacEncont);

@@ -1,3 +1,4 @@
+const { MongoTailableCursorError } = require('mongodb');
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://sutherland:gbUNh28zi6NQO75n@zenovia.ylzqyxn.mongodb.net/?retryWrites=true', { useNewUrlParser: true});
@@ -9,8 +10,13 @@ const ReservaSchema = new mongoose.Schema({
     horaFinal:     { type: Number },
     funcionario:   { type: mongoose.Schema.Types.ObjectId, ref: "FuncioModel", require: true, },
     cliente:       { type: mongoose.Schema.Types.ObjectId, ref: "ClienteModel", require: true, },
+    estacionamento:{ type: mongoose.Schema.Types.ObjectId, ref: "EstacionamentoModel", require: true, },
     nomeEstac:     { type: String, required: true },
     endereco:      { type: String, required: true },
+    telCliente:    { type: String, required: true },
+    nomeCliente:   { type: String, required: true },
+    placa:         { type: String, required: true },
+    modelo:        { type: String, required: true },
     localInicial:  { type: String },
     localFinal:    { type: String },
     status:        { type: String, required: true },

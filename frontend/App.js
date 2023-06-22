@@ -16,6 +16,7 @@ import EditarCliente from './src/paginas/editarCliente';
 import EditarEstacionamento from './src/paginas/editarEstacionamento';
 import ReservaCliente from './src/paginas/ReservaCliente';
 import MapaInicial from './src/paginas/mapa';
+import EfetuarReserva from './src/paginas/confirmarReserva';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,7 @@ function App() {
         <Stack.Screen name='EditarEstacionamento' component={EditarEstacionamento}/>
         <Stack.Screen name='ReservaCliente' component={ReservaCliente}/>
         <Stack.Screen name='MapaInicial' component={MapaInicial}/>
+        <Stack.Screen name='EfetuarReserva' component={EfetuarReserva}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
