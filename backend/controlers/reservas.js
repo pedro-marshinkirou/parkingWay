@@ -90,11 +90,11 @@ exports.cancelaReserva = async (req, res) => {
             try {
                 id = req.params.id
                 console.log(id);
-                res.status(201).json(await Reserva.ReservaModel.findByIdAndUpdate(id,{ status: 'C' } ));
+                res.status(201).json(await Reserva.ReservaModel.findByIdAndUpdate(id,{ status: 'CANCELADA' } ));
             } catch (error) {
                 res.status(400).json({ message: error.message });
             }
-            }
+            },
 exports.reservaCLIENTEUpdate = async (req, res) => {
             try{
                 id = req.params.id;
@@ -104,4 +104,66 @@ exports.reservaCLIENTEUpdate = async (req, res) => {
                 res.status(500)
                 .json({message: err.message});
                 }
+            },
+exports.reservaGetabertas = async (req, res) => {
+           try{
+                const id = req.params.id;
+                const reservas = await Reserva.ReservaModel.find({estacionamento: id, status: 'ABERTA'});
+                console.log(reservas);
+                res.json(reservas);
+           } catch (err) {
+            res.status(500)
+            .json({message: err.message});
             }
+        },
+exports.confirmaReserva = async (req, res) => {   
+            try {
+                id = req.params.id
+                console.log(id);
+                res.status(201).json(await Reserva.ReservaModel.findByIdAndUpdate(id,{ status: 'CONFIRMADA' } ));
+            } catch (error) {
+                res.status(400).json({ message: error.message });
+            }
+            },
+exports.encerraReserva = async (req, res) => {   
+            try {
+                id = req.params.id
+                console.log(id);
+                res.status(201).json(await Reserva.ReservaModel.findByIdAndUpdate(id,{ status: 'ENCERRADA' } ));
+            } catch (error) {
+                res.status(400).json({ message: error.message });
+            }
+            },
+exports.reservaGetconfirmadas = async (req, res) => {
+           try{
+                const id = req.params.id;
+                const reservas = await Reserva.ReservaModel.find({estacionamento: id, status: 'CONFIRMADA'});
+                console.log(reservas);
+                res.json(reservas);
+           } catch (err) {
+            res.status(500)
+            .json({message: err.message});
+            }
+        },
+exports.reservaGetcanceladas = async (req, res) => {
+           try{
+                const id = req.params.id;
+                const reservas = await Reserva.ReservaModel.find({estacionamento: id, status: 'CANCELADA'});
+                console.log(reservas);
+                res.json(reservas);
+           } catch (err) {
+            res.status(500)
+            .json({message: err.message});
+            }
+        },
+exports.reservaGetencerradas = async (req, res) => {
+           try{
+                const id = req.params.id;
+                const reservas = await Reserva.ReservaModel.find({estacionamento: id, status: 'ENCERRADA'});
+                console.log(reservas);
+                res.json(reservas);
+           } catch (err) {
+            res.status(500)
+            .json({message: err.message});
+            }
+        }

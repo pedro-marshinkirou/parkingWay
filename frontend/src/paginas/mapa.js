@@ -58,7 +58,7 @@ const MapaInicial = () => {
         modelo: data.modelo,
         localInicial: '',
         localFinal: '',
-        status: 'A',
+        status: 'ABERTA',
         valorVaga: estac.valor_vaga,
         tempo: '',
         valorFinal: '',
