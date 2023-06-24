@@ -10,6 +10,10 @@ var reservasService = {
     return ReservaUnica;
   },
 
+  getReservaAbertabyID: async (id) => {
+    var reservaAbt = await axios.get(`http://10.0.2.2:5000/apireserva/abertas/`+ id);
+    return reservaAbt;
+  },
 }
 
 export default reservasService;

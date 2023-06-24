@@ -7,10 +7,10 @@ const MenuReservas = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const {data} = route.params
-  console.log(data.nome);
-  console.log(data._id);
+  //console.log(data.nome);
+  //console.log(data._id);
   const [estacionamento, setEstacionamento] = useState({});
-  console.log(estacionamento);
+  //console.log(estacionamento);
 
   async function findEstacionamento() {
 
@@ -26,7 +26,7 @@ const MenuReservas = () => {
   findEstacionamento();
 
   const handleResABER = () => {
-    navigation.navigate('ReservasAbertas', {data, estacionamento});
+    navigation.navigate('ReservaAbert', {data, estacionamento});
   };
 
   const handleResCONF = () => {
