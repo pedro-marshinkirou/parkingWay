@@ -11,7 +11,9 @@ var reservasService = {
   },
 
   getReservaAbertabyID: async (id) => {
+    console.log(id +'.......A3');
     var reservaAbt = await axios.get(`http://10.0.2.2:5000/apireserva/abertas/`+ id);
+    console.log(reservaAbt +'........A4');
     return reservaAbt;
   },
 }

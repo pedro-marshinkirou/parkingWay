@@ -10,7 +10,7 @@ function ReservaAbert() {
     const navigation = useNavigation();
     const { data } = route.params
     const { estacionamento } = route.params
-    console.log(estacionamento);
+    console.log(estacionamento._id +'.......A1');
     const [tableData, setTableData] = useState([]);
     console.log(tableData);
 
@@ -19,6 +19,7 @@ function ReservaAbert() {
         try {
             const response = await reservasService.getReservaAbertabyID(estacionamento._id);
             setTableData(response.data);
+            console.log(response + '........A2')
 
         } catch (error) {
             console.error(error);
@@ -44,10 +45,12 @@ function ReservaAbert() {
                     <ScrollView>
                         {tableData.map((Reserva, index) => {
                             return <View style={styles.heading} key={Reserva._id}>
-                                <Text style={styles.Xheading}>Nome:{Reserva.nomeEstac}</Text>
-                                <Text style={styles.Xheading}>Email:{func.email}</Text>
-                                <Text style={styles.Xheading}>Telefone:{func.telefone}</Text>
-                                <Text style={styles.Xheading}>Função:{func.funcao}</Text>
+                                <Text style={styles.Xheading}>Nome do Cliente:{Reserva.nomeCliente}</Text>
+                                <Text style={styles.Xheading}>Modelo:{Reserva.modelo}</Text>
+                                <Text style={styles.Xheading}>Placa:{Reserva.placa}</Text>
+                                <Text style={styles.Xheading}>Telefone do cliente:{Reserva.telCliente}</Text>
+                                <Text style={styles.Xheading}>Tipo de Vaga:{Reserva.tipoVaga}</Text>
+                                <Text style={styles.Xheading}>Status:{Reserva.status}</Text>
                                 <TouchableOpacity style={styles.btn} onPress={handleditFuncio}>
                                     <Text style={styles.btnText}>Editar Perfil</Text>
                                 </TouchableOpacity>

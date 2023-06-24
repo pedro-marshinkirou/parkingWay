@@ -108,8 +108,9 @@ exports.reservaCLIENTEUpdate = async (req, res) => {
 exports.reservaGetabertas = async (req, res) => {
            try{
                 const id = req.params.id;
+                console.log(id + '.......A5');
                 const reservas = await Reserva.ReservaModel.find({estacionamento: id, status: 'ABERTA'});
-                console.log(reservas);
+                console.log(reservas+ '........A6');
                 res.json(reservas);
            } catch (err) {
             res.status(500)
