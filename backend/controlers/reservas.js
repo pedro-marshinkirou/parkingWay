@@ -166,4 +166,44 @@ exports.reservaGetencerradas = async (req, res) => {
             res.status(500)
             .json({message: err.message});
             }
+        },
+exports.iniciarReserva = async (req, res) => {   
+            try {
+                id = req.params.id
+                console.log(id);
+                res.status(201).json(await Reserva.ReservaModel.findByIdAndUpdate(id,{ status: 'INICIADA' } ));
+            } catch (error) {
+                res.status(400).json({ message: error.message });
+            }
+            },
+exports.reservaGetIniciadas = async (req, res) => {
+           try{
+                const id = req.params.id;
+                const reservas = await Reserva.ReservaModel.find({estacionamento: id, status: 'INICIADA'});
+                console.log(reservas);
+                res.json(reservas);
+           } catch (err) {
+            res.status(500)
+            .json({message: err.message});
+            }
+        },
+exports.finalizarReserva = async (req, res) => {   
+            try {
+                id = req.params.id
+                console.log(id);
+                res.status(201).json(await Reserva.ReservaModel.findByIdAndUpdate(id,{ status: 'FINALIZADA', pagConfirm: 'PAGO' } ));
+            } catch (error) {
+                res.status(400).json({ message: error.message });
+            }
+            },
+exports.reservaGetfinalizadas = async (req, res) => {
+           try{
+                const id = req.params.id;
+                const reservas = await Reserva.ReservaModel.find({estacionamento: id, status: 'FINALIZADA'});
+                console.log(reservas);
+                res.json(reservas);
+           } catch (err) {
+            res.status(500)
+            .json({message: err.message});
+            }
         }

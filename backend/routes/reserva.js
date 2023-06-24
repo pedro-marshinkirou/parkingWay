@@ -14,5 +14,8 @@ router.get('/confirmadas/:id', reservaController.reservaGetconfirmadas);
 router.get('/canceladas/:id', reservaController.reservaGetcanceladas);
 router.put('/encerra/:id', reservaController.encerraReserva);
 router.get('/encerradas/:id', reservaController.reservaGetencerradas);
-
+router.put('/iniciar/:id', reservaController.iniciarReserva);
+router.get('/iniciadas/:id', reservaController.reservaGetIniciadas);
+router.put('/finalizar/:id', reservaController.finalizarReserva);
+router.get('/finalizadas/:id', reservaController.reservaGetfinalizadas);
 module.exports = router;

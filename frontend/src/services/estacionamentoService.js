@@ -36,6 +36,11 @@ var estacionamentoService = {
     var Estacionamento = await axios.get(`http://10.0.2.2:5000/apiestacionamento/procurarpor`, {estacionamento});
     return Estacionamento;
   },
+
+  getEstacionamentobyIDfunc: async (id) => {
+    var estacONEAPI = await axios.get(`http://10.0.2.2:5000/apiestacionamento/byEstac/`+ id);
+    return estacONEAPI;
+  }
 }
 
 export default estacionamentoService;

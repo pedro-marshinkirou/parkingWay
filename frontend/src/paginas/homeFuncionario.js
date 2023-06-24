@@ -12,8 +12,8 @@ const HomeFuncionario = () => {
     navigation.navigate('Login');
   };
 
-  const handleCadastro = () => {
-    navigation.navigate('Cadfuncio');
+  const handleGerenciar = () => {
+    navigation.navigate('MenuReservas', {data});
   };
 
   const handleCadastroEstac = () => {
@@ -35,8 +35,8 @@ const HomeFuncionario = () => {
         <Text style={styles.description}>Bem-vindo ao Parking Way</Text>
         <View style={styles.buttonContainer}>
           <View style={styles.buttonSpacer} />
-          <TouchableOpacity style={styles.btn} onPress={handleCadastro}>
-            <Text style={styles.btnText}>Cadastro</Text>
+          <TouchableOpacity style={styles.btn} onPress={handleGerenciar}>
+            <Text style={styles.btnText}>Gerenciar Reservas</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn} onPress={handleCadastroEstac}>
             <Text style={styles.btnText}>

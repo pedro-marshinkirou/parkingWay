@@ -63,7 +63,7 @@ const MapaInicial = () => {
         tempo: '',
         valorFinal: '',
         tipoVaga: 'Normal',
-        pagConfirm: 'NC',
+        pagConfirm: 'NPG',
       })
         console.log(reserva);
         console.log(estac);

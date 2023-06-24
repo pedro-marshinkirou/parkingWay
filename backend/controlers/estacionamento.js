@@ -130,5 +130,16 @@ exports.procurarEstac = async (req, res) => {
                     } catch (err){
                         res.status(500).json({message: err.message}); 
                     }
-                }
+                },
+exports.EstacionamentoGetoneBYestac = async (req, res) => {
+                    try{
+                         const id = req.params.id;
+                         const estacionamento = await EST.EstacionamentoModel.findOne({funcionario: id});
+                         console.log(estacionamento);
+                         res.json(estacionamento);
+                    } catch (err) {
+                     res.status(500)
+                     .json({message: err.message});
+                     }
+                 }
     
