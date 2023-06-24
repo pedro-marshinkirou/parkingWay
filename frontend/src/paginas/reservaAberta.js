@@ -28,8 +28,24 @@ function ReservaAbert() {
     };
     
 
-    const handleditFuncio = () => {
-        navigation.navigate('EditarFunc', { data });
+    async function handleCancelRes(field){
+        console.log(field + '..........A7')
+        const cancelada = await reservasService.getCancelarReservabyID(field);
+        if(cancelada){
+            alert('Reserva cancelada com sucesso!');
+        }else{
+            alert('Impossível cancelar');
+        }
+    };
+
+    async function handleConfirmRes(field){
+        console.log(field + '..........A8')
+        const confirmada = await reservasService.getConfirmarReservabyID(field);
+        if(confirmada){
+            alert('Reserva confirmada com sucesso!');
+        }else{
+            alert('Impossível confirmar');
+        }
     };
 
     const handleRecharge = () => {
@@ -51,8 +67,11 @@ function ReservaAbert() {
                                 <Text style={styles.Xheading}>Telefone do cliente:{Reserva.telCliente}</Text>
                                 <Text style={styles.Xheading}>Tipo de Vaga:{Reserva.tipoVaga}</Text>
                                 <Text style={styles.Xheading}>Status:{Reserva.status}</Text>
-                                <TouchableOpacity style={styles.btn} onPress={handleditFuncio}>
-                                    <Text style={styles.btnText}>Editar Perfil</Text>
+                                <TouchableOpacity style={styles.btn} onPress={() => handleConfirmRes(Reserva._id)}>
+                                    <Text style={styles.btnText}>Confirmar Reserva</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.btn} onPress={() => handleCancelRes(Reserva._id)}>
+                                    <Text style={styles.btnText}>Cancelar Reserva</Text>
                                 </TouchableOpacity>
                             </View>
                         })}
