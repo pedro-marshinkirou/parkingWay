@@ -51,6 +51,14 @@ var reservasService = {
     console.log(reservaInit +'........A4');
     return reservaInit;
   },
+
+  getReservasIniciadasBYID: async (id) => {
+    console.log(id +'.......A3');
+    var reservasInitiadas = await axios.get(`http://10.0.2.2:5000/apireserva/iniciadas/`+ id);
+    console.log(reservasInitiadas +'........A4');
+    return reservasInitiadas;
+  },
+
 }
 
 export default reservasService;
