@@ -30,6 +30,27 @@ var reservasService = {
     console.log(reservaconf +'........A4');
     return reservaconf;
   },
+
+  getReservaCanceladaBYID: async (id) => {
+    console.log(id +'.......A3');
+    var reservascanc = await axios.get(`http://10.0.2.2:5000/apireserva/canceladas/`+ id);
+    console.log(reservascanc +'........A4');
+    return reservascanc;
+  },
+
+  getReservasConfirmadasBYID: async (id) => {
+    console.log(id +'.......A3');
+    var reservasconfirmdas = await axios.get(`http://10.0.2.2:5000/apireserva/confirmadas/`+ id);
+    console.log(reservasconfirmdas +'........A4');
+    return reservasconfirmdas;
+  },
+
+  getIniciarReservabyID: async (id) => {
+    console.log(id +'.......A3');
+    var reservaInit = await axios.put(`http://10.0.2.2:5000/apireserva/iniciar/`+ id);
+    console.log(reservaInit +'........A4');
+    return reservaInit;
+  },
 }
 
 export default reservasService;

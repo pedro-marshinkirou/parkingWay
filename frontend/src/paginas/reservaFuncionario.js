@@ -30,7 +30,7 @@ const MenuReservas = () => {
   };
 
   const handleResCONF = () => {
-    navigation.navigate('ReservasConfirmadas', {data, estacionamento});
+    navigation.navigate('ReservaConfirm', {data, estacionamento});
   };
 
   const handleResINIT = () => {
