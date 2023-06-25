@@ -5,7 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import logo from '../../assets/logo.png';
 
 
-function ReservaInitiada() {
+function ReservasFinalizad() {
     const route = useRoute();
     const navigation = useNavigation();
     const { data } = route.params
@@ -17,7 +17,7 @@ function ReservaInitiada() {
     async function fetchTableData() {
 
         try {
-            const response = await reservasService.getReservasIniciadasBYID(estacionamento._id);
+            const response = await reservasService.getReservasFinalizadasBYID(estacionamento._id);
             setTableData(response.data);
             console.log(response + '........A2')
 
@@ -27,8 +27,7 @@ function ReservaInitiada() {
 
     };
     
-
-    async function handleCancelRes(field){
+    /*async function handleCancelRes(field){
         console.log(field + '..........A7')
         const cancelada = await reservasService.getCancelarReservabyID(field);
         if(cancelada){
@@ -38,15 +37,15 @@ function ReservaInitiada() {
         }
     };
 
-    async function handleEncerrRes(field){
+    async function handleFinalizeRes(field){
         console.log(field + '..........A8')
-        const encerrada = await reservasService.getEncerrarReservabyID(field);
-        if(encerrada){
-            alert('Reserva Encerrada!');
+        const finalizada = await reservasService.getFinalizarReservabyID(field);
+        if(finalizada){
+            alert('Reserva Finalizada!');
         }else{
-            alert('Impossível encerrar...');
+            alert('Impossível Finalizar...');
         }
-    };
+    };*/
 
     const handleRecharge = () => {
         fetchTableData();
@@ -56,7 +55,7 @@ function ReservaInitiada() {
         <View style={styles.wrapper}>
             <View style={styles.contentLogin}>
                 <Image source={logo} style={styles.imageSet} />
-                <Text style={styles.heading}>Reservas Iniciadas</Text>
+                <Text style={styles.heading}>Reservas Finalizadas</Text>
                 <SafeAreaView style={styles.container}>
                     <ScrollView>
                         {tableData.map((Reserva, index) => {
@@ -66,14 +65,10 @@ function ReservaInitiada() {
                                 <Text style={styles.Xheading}>Placa:{Reserva.placa}</Text>
                                 <Text style={styles.Xheading}>Telefone do cliente:{Reserva.telCliente}</Text>
                                 <Text style={styles.Xheading}>Tipo de Vaga:{Reserva.tipoVaga}</Text>
-                                <Text style={styles.Xheading}>Status:{Reserva.status}</Text>
                                 <Text style={styles.Xheading}>Data:{Reserva.data}</Text>
-                                <TouchableOpacity style={styles.btn} onPress={() => handleEncerrRes(Reserva._id)}>
-                                    <Text style={styles.btnText}>Encerrar Reserva</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.btn} onPress={() => handleCancelRes(Reserva._id)}>
-                                    <Text style={styles.btnText}>Cancelar Reserva</Text>
-                                </TouchableOpacity>
+                                <Text style={styles.Xheading}>Valor Final:{Reserva.valorFinal}</Text>
+                                <Text style={styles.Xheading}>Pagamento:{Reserva.pagConfirm}</Text>
+                                <Text style={styles.Xheading}>Status:{Reserva.status}</Text>
                             </View>
                         })}
                         <TouchableOpacity style={styles.btn} onPress={handleRecharge}>
@@ -214,4 +209,4 @@ const styles = {
         color: '#800080',
     },
 };
-export default ReservaInitiada;
+export default ReservasFinalizad;

@@ -34,15 +34,15 @@ const MenuReservas = () => {
   };
 
   const handleResINIT = () => {
-    navigation.navigate('ReservasIniciadas', {data, estacionamento});
+    navigation.navigate('ReservaInitiada', {data, estacionamento});
   };
 
   const handleResENC= () => {
-    navigation.navigate('ReservasEncerradas', {data, estacionamento});
+    navigation.navigate('ReservaEncerrad', {data, estacionamento});
   };
 
   const handleResFIN= () => {
-    navigation.navigate('ReservasFinalizadas', {data, estacionamento});
+    navigation.navigate('ReservasFinalizad', {data, estacionamento});
   };
 
   const handleResCancl = () => {

@@ -59,6 +59,34 @@ var reservasService = {
     return reservasInitiadas;
   },
 
+  getEncerrarReservabyID: async (id) => {
+    console.log(id +'.......A3');
+    var reservaEncerr = await axios.put(`http://10.0.2.2:5000/apireserva/encerra/`+ id);
+    console.log(reservaEncerr +'........A4');
+    return reservaEncerr;
+  },
+
+  getReservasEncerradasBYID: async (id) => {
+    console.log(id +'.......A3');
+    var reservasEncerradas = await axios.get(`http://10.0.2.2:5000/apireserva/encerradas/`+ id);
+    console.log(reservasEncerradas +'........A4');
+    return reservasEncerradas;
+  },
+
+  getFinalizarReservabyID: async (id) => {
+    console.log(id +'.......A3');
+    var reservaFinalizada = await axios.put(`http://10.0.2.2:5000/apireserva/finalizar/`+ id);
+    console.log(reservaFinalizada +'........A4');
+    return reservaFinalizada;
+  },
+
+  getReservasFinalizadasBYID: async (id) => {
+    console.log(id +'.......A3');
+    var reservasFNLZDS = await axios.get(`http://10.0.2.2:5000/apireserva/finalizadas/`+ id);
+    console.log(reservasFNLZDS +'........A4');
+    return reservasFNLZDS;
+  },
+
 }
 
 export default reservasService;

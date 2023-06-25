@@ -22,6 +22,8 @@ import ReservaAbert from './src/paginas/reservaAberta';
 import ReservasCanceladas from './src/paginas/reservaCancel';
 import ReservaConfirm from './src/paginas/reservaConfirm';
 import ReservaInitiada from './src/paginas/reservaIniciada';
+import ReservaEncerrad from './src/paginas/reservaEncerrada';
+import ReservasFinalizad from './src/paginas/reservaFinalizada';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +52,8 @@ function App() {
         <Stack.Screen name='ReservasCanceladas' component={ReservasCanceladas}/>
         <Stack.Screen name='ReservaConfirm' component={ReservaConfirm}/>
         <Stack.Screen name='ReservaInitiada' component={ReservaInitiada}/>
+        <Stack.Screen name='ReservaEncerrad' component={ReservaEncerrad}/>      
+        <Stack.Screen name='ReservasFinalizad' component={ReservasFinalizad}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
