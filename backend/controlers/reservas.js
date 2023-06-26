@@ -3,8 +3,28 @@ mongoose = require("mongoose");
 
 exports.createReserva = async (req, res) => {  
     try{ 
-        console.log(req)
-              var { reserva } = req.body;
+              var { 
+                data,
+                numReserva,
+                horaInicio,
+                horaFinal,
+                funcionario,
+                cliente,
+                estacionamento,
+                nomeEstac,
+                endereco,
+                telCliente,
+                nomeCliente,
+                placa,
+                modelo,
+                localInicial,
+                localFinal,
+                status,
+                valorVaga,
+                tempo,
+                valorFinal,
+                tipoVaga,
+                pagConfirm } = req.body;
 
                 var reserva = await Reserva.ReservaModel.create(req.body)
                     .catch((err) => console.log(err.messsage));
@@ -15,6 +35,8 @@ exports.createReserva = async (req, res) => {
                     messsage: "Reserva cadastrado com sucesso",
                         Reserva: {
                         id: reserva._id,
+                        data,
+                        numReserva,
                         horaInicio,
                         horaFinal,
                         funcionario,
