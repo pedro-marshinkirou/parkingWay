@@ -42,7 +42,7 @@ const MapaInicial = () => {
         console.log("DIFFERENT LONG",e.nativeEvent.coordinate.longitude)
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = () => {
       try{
       setReserva({
         horaInicio: '',

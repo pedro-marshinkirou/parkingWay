@@ -3,9 +3,35 @@ import axios from 'axios';
 var reservasService = {
 
   // método para cadastrar um funcionário
-  createReserva: async (Eftreserva) => {
-    console.log( typeof Eftreserva);
-    console.log(Eftreserva);
+  createReserva: async (estac, data) => {
+    console.log( typeof estac);
+    console.log(estac.nome + ".........A9");
+    console.log( typeof data);
+    console.log(data.nome +"..........A10");
+    var randomNum = Math.floor(Date.now() * Math.random()).toString(32)
+    console.log(randomNum + "...........A11");
+    var Eftreserva = {
+        numReserva: randomNum,
+        horaInicio: '',
+        horaFinal: '',
+        funcionario: estac.funcionario,
+        cliente: data._id,
+        estacionamento: estac._id,
+        nomeEstac: estac.nome,
+        endereco: estac.endereco,
+        telCliente: data.telefone,
+        nomeCliente: data.nome,
+        placa: data.placa,
+        modelo: data.modelo,
+        localInicial: '',
+        localFinal: '',
+        status: 'ABERTA',
+        valorVaga: estac.valor_vaga,
+        tempo: '',
+        valorFinal: '',
+        tipoVaga: 'Normal',
+        pagConfirm: 'NPG',
+    }
     var ReservaUnica = await axios.post(`http://10.0.2.2:5000/apireserva/`, Eftreserva);
     return ReservaUnica;
   },

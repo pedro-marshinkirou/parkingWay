@@ -61,6 +61,7 @@ function ReservaAbert() {
                     <ScrollView>
                         {tableData.map((Reserva, index) => {
                             return <View style={styles.heading} key={Reserva._id}>
+                                <Text style={styles.Xheading}>Nº da reserva:{Reserva.numReserva}</Text>
                                 <Text style={styles.Xheading}>Nome do Cliente:{Reserva.nomeCliente}</Text>
                                 <Text style={styles.Xheading}>Modelo:{Reserva.modelo}</Text>
                                 <Text style={styles.Xheading}>Placa:{Reserva.placa}</Text>

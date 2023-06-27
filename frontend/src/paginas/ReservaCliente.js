@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StatusBar, SafeAreaView, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import estacionamentoService from '../services/estacionamentoService';
+import reservasService from '../services/reservasService';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import logo from '../../assets/logo.png';
 
@@ -16,11 +17,22 @@ function ReservaCliente() {
         estacionamento: ''
     });
     
-        const handleChange = (name, value) => {
+        /*const handleChange = (name, value) => {
             setEstacionamento({
             ...estacionamento,
             [name]: value
             });
+        };*/
+
+        async function handleFinalizar(estac, data){
+            console.log(estac.nome + '..........A7')
+            console.log(data.nome + '..........A8')
+            const efetuada = await reservasService.createReserva(estac, data);
+            if(efetuada){
+                alert('Reserva efetuada com sucesso!');
+            }else{
+                alert('Ocorreu algum erro ao reservar...');
+            }
         };
 
         const handleSubmit = async () => {
@@ -29,14 +41,13 @@ function ReservaCliente() {
                 if (
                     estacionamento.estacionamento === ''
                   ) {
-                    alert('Por Favor, insira um nome ou endereço');
+                    alert('Por Favor, insira um nome ou endereço teste');
                     return;
-                  }
-
+                  }                 
                 console.log(estacionamento.estacionamento);
                 console.log( typeof estacionamento.estacionamento);
                 const response = await estacionamentoService.procurarEstacionamento(estacionamento.estacionamento);
-                setTableData(response.data);
+                setTableData(response.data);                
 
                 setEstacionamento({
                     estacionamento:''
@@ -78,12 +89,8 @@ function ReservaCliente() {
                                     <Text style={styles.Xheading}>Nome do Proprietário:{estac.nome_proprietario}</Text>
                                     <Text style={styles.Xheading}>Valor para Reservar:{estac.valor_espera}</Text>
                                     <Text style={styles.Xheading}>Limite MAX de Horas:{estac.limite_horas}</Text>
-                                    <TouchableOpacity key={estac._id} style={styles.btn} onPress={() => {
-                                        console.log(estac);
-                                        console.log(data);
-                                        navigation.navigate('MapaInicial', {estac: estac, data});
-                                    }}>
-                                        <Text style={styles.btnText}>Ver no Mapa</Text>
+                                    <TouchableOpacity key={estac._id} style={styles.btn} onPress={() => handleFinalizar(estac, data)}>
+                                        <Text style={styles.btnText}>Reservar!</Text>
                                     </TouchableOpacity>
                                 </View>
                         })}
