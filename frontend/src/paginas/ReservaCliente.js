@@ -4,7 +4,8 @@ import estacionamentoService from '../services/estacionamentoService';
 import reservasService from '../services/reservasService';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import logo from '../../assets/logo.png';
-import MapasLocalizacao from '../componentes/mapas';
+//import MapasLocalizacao from '../componentes/mapas';
+import MapWithLocation from '../componentes/teste'
 
 
 function ReservaCliente() {
@@ -67,7 +68,7 @@ function ReservaCliente() {
             <ScrollView>
                 <View style={styles.contentLogin}>
                 <Image source={logo} style={styles.imageSet} />
-                <MapasLocalizacao/>
+                <MapWithLocation/>
                 <Text style={styles.heading}>Escolha Seu Estacionamento</Text>
                 <View>
                     <TextInput
