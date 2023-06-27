@@ -4,7 +4,6 @@ import reservasService from '../services/reservasService';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import logo from '../../assets/logo.png';
 
-
 function ReservaConfirm() {
     const route = useRoute();
     const navigation = useNavigation();
@@ -56,7 +55,7 @@ function ReservaConfirm() {
         <View style={styles.wrapper}>
             <View style={styles.contentLogin}>
                 <Image source={logo} style={styles.imageSet} />
-                <Text style={styles.heading}>Reservas Confirmadas</Text>
+                <Text style={styles.heading}>Reservas Confirmadas</Text>                
                 <SafeAreaView style={styles.container}>
                     <ScrollView>
                         {tableData.map((Reserva, index) => {

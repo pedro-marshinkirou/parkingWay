@@ -4,6 +4,7 @@ import estacionamentoService from '../services/estacionamentoService';
 import reservasService from '../services/reservasService';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import logo from '../../assets/logo.png';
+import MapasLocalizacao from '../componentes/mapas';
 
 
 function ReservaCliente() {
@@ -13,9 +14,11 @@ function ReservaCliente() {
     console.log(data.nome);
     const [tableData, setTableData] = useState([]);
     const [estac, setEstac] = useState({});
-    const [estacionamento, setEstacionamento] = useState({
+/*    const [estacionamento, setEstacionamento] = useState({
         estacionamento: ''
-    });
+    });*/
+    const [estacionamento, setEstacionamento] = useState('');
+
     
         /*const handleChange = (name, value) => {
             setEstacionamento({
@@ -64,6 +67,7 @@ function ReservaCliente() {
             <ScrollView>
                 <View style={styles.contentLogin}>
                 <Image source={logo} style={styles.imageSet} />
+                <MapasLocalizacao/>
                 <Text style={styles.heading}>Escolha Seu Estacionamento</Text>
                 <View>
                     <TextInput
